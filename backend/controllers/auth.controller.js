@@ -17,7 +17,6 @@ export const signup = async (req, res) => {
         }
 
         const existingEmail = await User.findOne({email});
-        console.log(existingEmail)
         if(existingEmail) {
             return res.status(400).send({ error: " Email is already in use" });
         }
