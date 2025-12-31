@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import {generateTokenAndSetCookie} from "../lib/utils/generateToken.js";
 
 export const signup = async (req, res) => {
+    console.log("User Signing up");
     try{
         const {fullName, username, email, password} = req.body;
 
@@ -54,7 +55,6 @@ export const signup = async (req, res) => {
         else {
             return res.status(400).json({ error: "Invalid user data" });
         }
-
     }
     catch (error) {
         console.log("Error in signup controller ", error.message);
@@ -63,6 +63,7 @@ export const signup = async (req, res) => {
 }
 
 export const login = async (req, res) => {
+    console.log("User Logging In");
     try {
         const {username, password} = req.body;
         const user = await User.findOne({username});
@@ -90,6 +91,7 @@ export const login = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
+    console.log("User Logged out");
     try {
         res.cookie("jwt", "", {maxAge: 0});
         res.status(200).json({message: "Logged out successfully"});
