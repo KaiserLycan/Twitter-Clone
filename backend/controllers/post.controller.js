@@ -86,7 +86,12 @@ export const commentOnPost = async (req, res) => {
         post.comments.push(comment)
         await post.save();
 
-        res.status(200).json(post);
+        await post.populate({
+            path: "comments.user",
+            select: "-password"
+        });
+
+        res.status(200).json(post.comments);
     }
     catch (error) {
         console.log("Error in createPost controller", error.message);
@@ -180,7 +185,6 @@ export const getLikedPosts = async (req, res) => {
         res.status(500).json({error: "Internal Server Error", description: error.message});
     }
 }
-
 
 export const getFollowingPost = async (req, res) => {
     try {
