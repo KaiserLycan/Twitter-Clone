@@ -42,10 +42,12 @@ const Post = ({ post }) => {
     const {mutate: likePost, isPending: isLiking} = useMutation({
         mutationFn: async () => {
             try {
-                const res = await fetch(`api/posts/like/${post._id}`, {
+                const res = await fetch(`/api/posts/like/${post._id}`, {
                     method: "POST",
                 })
+
                 const data = await res.json();
+
 
                 if(!res.ok) throw new Error(data.error || "Something went wrong");
                 return data;

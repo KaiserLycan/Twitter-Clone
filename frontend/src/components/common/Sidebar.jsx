@@ -9,7 +9,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const Sidebar = () => {
-    const {data} = useQuery({queryKey: ["authUser"]});
+    const {data} = useQuery({queryKey: ['authUser']});
 
     const {mutate: logoutMutation } = useMutation({
         mutationFn: async () => {
@@ -36,12 +36,6 @@ const Sidebar = () => {
             toast.error("Logout failed!");
         }
     });
-
-    const handleLogOut = (e) => {
-        e.preventDefault();
-        logoutMutation()
-    }
-
 
     return (
         <div className='md:flex-[2_2_0] w-18 max-w-52'>
@@ -96,7 +90,11 @@ const Sidebar = () => {
                             </div>
                             <BiLogOut
                                 className='w-5 h-5 cursor-pointer'
-                                onClick={handleLogOut}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    logoutMutation();
+                                }}
                             />
                         </div>
                     </Link>

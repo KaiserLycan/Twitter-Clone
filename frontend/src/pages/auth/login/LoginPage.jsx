@@ -7,6 +7,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { MdPassword } from "react-icons/md";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import {data} from "autoprefixer";
 
 const LoginPage = () => {
 
@@ -35,7 +36,7 @@ const LoginPage = () => {
             }
             catch (error) {
                 console.log(error);
-                throw error;
+                throw new Error(error.message);
             }
         },
         onSuccess: async () => {
