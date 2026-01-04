@@ -9,7 +9,8 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const Sidebar = () => {
-    const {data} = useQuery({queryKey: ['authUser']});
+    const queryClient = useQueryClient();
+    const {data} = useQuery({queryKey: ["authUser"]});
 
     const {mutate: logoutMutation } = useMutation({
         mutationFn: async () => {

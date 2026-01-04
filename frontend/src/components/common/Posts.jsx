@@ -21,6 +21,8 @@ const Posts = ({feedType, username, userId}) => {
         }
     }
 
+    // HI
+
     const POST_ENDPOINT = getPostEndpoint();
 
     const {data : posts, isLoading, refetch, isRefetching} = useQuery({

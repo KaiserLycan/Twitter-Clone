@@ -106,11 +106,11 @@ const Post = ({ post }) => {
 
 
     const postOwner = post.user;
-    const isLiked = post.likes.includes(authUser._id);
+    const isLiked = post.likes.includes(authUser?._id);
 
-    const isMyPost = authUser._id === post.user._id;
+    const isMyPost = authUser?._id === post?.user._id;
 
-    const formattedDate = formatPostDate(post.createdAt);
+    const formattedDate = formatPostDate(post?.createdAt);
 
 
     const handleDeletePost = () => {
